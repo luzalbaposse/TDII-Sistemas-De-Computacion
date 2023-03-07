@@ -14,7 +14,7 @@ int len(char* s) {
         s++;
     }
     return count;
-}
+} // La función len devuelve la cantidad de caracteres que tiene el string s, sin contar el 0 final. De esta forma, si s es un string de 5 caracteres, len(s) debe devolver 5.
 
 char* copy(char* s) {
     int len = 0;
@@ -28,7 +28,7 @@ char* copy(char* s) {
     new_s[len] = '\0';
     return new_s;
 
-}
+} // La función copy devuelve una copia del string s. La copia debe ser un nuevo string, es decir, debe estar en una nueva posición de memoria. La función copy debe utilizar malloc para reservar memoria para el nuevo string.
 
 void replaceChar(char* s, char old, char new) {
 
@@ -39,7 +39,7 @@ void replaceChar(char* s, char old, char new) {
         }
         i++;
     }
-}
+} //La funcion replaceChar recibe un string s, un caracter old y un caracter new. La función debe reemplazar todas las apariciones del caracter old por el caracter new en el string s.
 
 char* concatenate(char* s1, char* s2) {
     int long1 = strlen(s1);
@@ -55,10 +55,10 @@ char* concatenate(char* s1, char* s2) {
     free(s1);
     free(s2);
     return new_s;
-}
+} //La funcion concatenate recibe dos strings s1 y s2 y devuelve un nuevo string que es la concatenación de s1 y s2. La función debe utilizar malloc para reservar memoria para el nuevo string.
 
 int main() {
-    /*
+    
     // -- Descomentar para probar --
     // Lo siguiente es un ejemplo y DEBE ser modificado.
 
@@ -88,7 +88,7 @@ int main() {
     
     free(concat);
 
-    // */
+    
 
     return 0;
 }
