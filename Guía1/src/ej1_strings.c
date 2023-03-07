@@ -1,31 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
+// El lenguaje C no posee definido el tipo b´asico string, como sucede en otros lenguajes de programación. 
+// Sin embargo, podemos implementar un string como una cadena de caracteres, es decir, un
+// arreglo de caracteres. Para identificar d´onde termina la cadena de caracteres, escribimos un 0 (cero)
+// como último carácter de la cadena. Por lo tanto, se dice que un string de C es un arreglo de caracteres
+// cuyo último carácter es un 0
 int len(char* s) {
 
-    // COMPLETAR
-
-    return 0;
+    int count = 0;
+    while (*s != '\0') {
+        count++;
+        s++;
+    }
+    return count;
 }
 
 char* copy(char* s) {
+    int len = 0;
+    while (s[len] != '\0') {
+        len++;
+    }
+    char* new_s = (char*) malloc((len + 1) * sizeof(char));
+    for (int i = 0; i < len; i++) {
+        new_s[i] = s[i];
+    }
+    new_s[len] = '\0';
+    return new_s;
 
-    // COMPLETAR
-
-    return 0;
 }
 
 void replaceChar(char* s, char old, char new) {
 
-    // COMPLETAR
-
+    int i = 0;
+    while (s[i] != '\0') {
+        if (s[i] == old) {
+            s[i] = new;
+        }
+        i++;
+    }
 }
 
 char* concatenate(char* s1, char* s2) {
-
-    // COMPLETAR
-    
-    return 0;
+    int long1 = strlen(s1);
+    int long2 = strlen(s2);
+    char* new_s = (char*) malloc((long1 + long2 + 1) * sizeof(char));
+    for (int i = 0; i < long1; i++) {
+        new_s[i] = s1[i];
+    }
+    for (int i = 0; i < long2; i++) {
+        new_s[long1 + i] = s2[i];
+    }
+    new_s[long1 + long2] = '\0';
+    free(s1);
+    free(s2);
+    return new_s;
 }
 
 int main() {
