@@ -3,10 +3,24 @@
 
 char* longest(char* v[], int size) {
 
-    // COMPLETAR
+    char* str_maslargo = v[0];
+    int longitud_masgrande = 0;
 
-    return 0;
+    for (int i = 0; i < size; i++) {
+        int longitud = 0;
+        while (*(v[i] + longitud) != '\0') {
+            longitud++;
+        }
+
+        if (longitud > longitud_masgrande) {
+            str_maslargo = v[i];
+            longitud_masgrande = longitud;
+        }
+    }
+
+    return str_maslargo;
 }
+
 
 char* superConcatenate(char* v[], int size) {
 
@@ -23,7 +37,7 @@ char* superConcatenateWithSep(char* v[], int size, char* s) {
 }
 
 int main() {
-    /*
+    
     // -- Descomentar para probar --
     // Lo siguiente es un ejemplo y DEBE ser modificado.
 
@@ -33,18 +47,6 @@ int main() {
 
     printf("El string mas largo es: \"%s\"\n", l);
 
-    char* sc = superConcatenate(v, 5);
-
-    printf("El arreglo de string super concatenado es: \"%s\"\n", sc);
-
-    char* scs = superConcatenateWithSep(v, 5, "...");
-
-    printf("El arreglo de string super concatenado con separadores es: \"%s\"\n", scs);
-
-    free(sc);
-    free(scs);
-
-    // */
-
+   
     return 0;
 }

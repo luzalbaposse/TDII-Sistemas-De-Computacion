@@ -17,16 +17,16 @@ int len(char* s) {
 } // La función len devuelve la cantidad de caracteres que tiene el string s, sin contar el 0 final. De esta forma, si s es un string de 5 caracteres, len(s) debe devolver 5.
 
 char* copy(char* s) {
-    int len = 0;
-    while (s[len] != '\0') {
-        len++;
+    int longitud = 0;
+    while (s[longitud] != '\0') {
+        longitud++;
     }
-    char* new_s = (char*) malloc((len + 1) * sizeof(char));
-    for (int i = 0; i < len; i++) {
-        new_s[i] = s[i];
+    char* nuevostring = (char*) malloc((longitud + 1) * sizeof(char));
+    for (int i = 0; i < longitud; i++) {
+        nuevostring[i] = s[i];
     }
-    new_s[len] = '\0';
-    return new_s;
+    nuevostring[longitud] = '\0';
+    return nuevostring;
 
 } // La función copy devuelve una copia del string s. La copia debe ser un nuevo string, es decir, debe estar en una nueva posición de memoria. La función copy debe utilizar malloc para reservar memoria para el nuevo string.
 
