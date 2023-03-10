@@ -37,14 +37,16 @@ char* longest(char* v[], int size) {
  todos los elementos del arreglo.
 Ejemplo: superConcatenate(["Eh_","oo oo","+Gol"], 3) → "Eh_oo oo+Gol"
 */
-char* superConcatenate(char* v[], int size) {
-    char concatenacion = ""; // Variable que va a contener la concatenación 
-    for (int i = 0; i < size; i++) { // Recorro el arreglo de strings
-        concatenacion = concatenate(concatenacion, v[i]); // Concateno el string actual con la concatenación
-    }
-    return concatenacion;
 
-    return 0;
+char* superConcatenate(char* v[], int size) {
+    
+        char concatenacion = ""; // Variable que va a contener la concatenación
+        for (int i = 0; i < size; i++) { // Recorro el arreglo de strings
+            concatenacion = concatenate(concatenacion, v[i]); // Concateno el string actual con la concatenación
+        }
+        
+    
+        return 0;
 }
 
 /*
