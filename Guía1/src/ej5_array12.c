@@ -45,9 +45,6 @@ int sumAsInts(int* v) {
 }
 
 int main() {
-    /*
-    // -- Descomentar para probar --
-    // Lo siguiente es un ejemplo y DEBE ser modificado.
 
     char v[12] = {0x05,0x01,0x00,0x00,0x05,0x01,0x00,0x00,0x05,0x01,0x00,0x00};
 
@@ -57,7 +54,6 @@ int main() {
     printf("El arreglo sumado de a bytes es: %i (d) %x (h)\n", sumB, sumB);
     printf("El arreglo sumado de a ints es: %i (d) %x (h)\n", sumI, sumI);
 
-    // */
 
     return 0;
 }

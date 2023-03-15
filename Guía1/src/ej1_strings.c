@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 // El lenguaje C no posee definido el tipo básico string, como sucede en otros lenguajes de programación. 
 // Sin embargo, podemos implementar un string como una cadena de caracteres, es decir, un
 // arreglo de caracteres. Para identificar dónde termina la cadena de caracteres, escribimos un 0 (cero)

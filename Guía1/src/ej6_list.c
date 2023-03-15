@@ -1,30 +1,87 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+
+Suponer la siguiente estructura de nodos para una lista:
+
+struct node {
+int data;
+struct node *next;
+};
+
+d. Implementar la función struct node* removeData(struct node* n, int data), que toma
+un puntero a una lista y un dato, y borra todas las apariciones de data en la lista. La función
+debe retornar el puntero a la lista resultado.
+
+*/
+
 struct node {
     int data;
     struct node *next;
 };
 
 struct node* addLast(struct node* n, int data) {
+/*
+a. Implementar la función struct node* addLast(struct node* n, int data), que toma un
+puntero al primer nodo de la lista y agrega en el último lugar de la lista un nuevo nodo que
+contiene el dato pasado por par´ametro. La función debe retornar el puntero al primer nodo de
+la lista.
+*/
+    struct node *newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->data = data;
+    newNode->next = 0;
+    if(n == 0){
+        n = newNode;
+        } else {
 
-    // COMPLETAR
-    
-    return 0;
+            struct node *aux = n;
+            while(aux-> next !=0){
+                aux = aux -> next;
+            }
+            aux -> next = newNode;
+
+        }
+        return n;
 }
 
 struct node* removeFirst(struct node* n) {
 
-    // COMPLETAR
-    
+    /*
+    b. Implementar la función struct node* removeFirst(struct node* n), que toma un puntero
+    al primer nodo de la lista, borra el primer nodo de la lista y retorna el puntero al nuevo primer
+    elemento de la lista (el que antes era el segundo elemento).
+    */
+   if(n == 0){
     return 0;
+   }
+   struct node *aux = n;
+   n = n -> next;
+   free(aux);
+   return n;
 }
 
 struct node* join(struct node* n1, struct node* n2) {
 
-    // COMPLETAR
+    /*
+    c. Implementar la función struct node* join(struct node* n1, struct node* n2), que toma
+    dos punteros a listas y las concatena: primero n1 y luego n2. La lista resultado utilizar´a los nodos
+    de las listas pasadas por par´ametro. Esta función debe retonar el puntero al primer elemento de
+    la lista resultado.
+    */
+   if(n1 == 0){
+    return n2;
+   }
+    if(n2 == 0){
+    return n1;
+    }
+    struct node *aux = n1;  
+    while(aux->next != 0){
+        aux = aux -> next;
+    }
+    aux -> next = n2;
+    return n1;
     
-    return 0;
 }
 
 struct node* removeData(struct node* n, int data) {
