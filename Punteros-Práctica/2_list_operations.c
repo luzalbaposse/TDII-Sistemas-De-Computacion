@@ -57,6 +57,19 @@ struct node *delete_node(struct node *head, int key) {
 }
 
 struct node *reverse_list(struct node *head) {
-  // TODO
-  return NULL;
+  // El objetivo es dar vuelta la lista 
+  // si la lista está vacía, no hago nada
+  // si la lista tiene un solo nodo, no hago nada
+  // si la lista tiene dos nodos o mas, los invierto
+  struct node *anterior = NULL; // tengo un nodo anterior que apunta a null
+  struct node *siguiente = NULL; // tengo un nodo siguiente que apunta a null
+  struct node *actual = head; // y tengo el nodo en el que estoy parada
+  while (actual != NULL){ // si el nodo actual, no apunta a null entonces tengo que seguir pasando la lista
+    siguiente = actual -> next; // voy ahacer que el siguiente sea el actual que aputna a next
+    actual -> next = anterior; // acá actual que apunta a next, es el anterior
+    anterior = actual; // y le digo al anterior ¡¡ey!! vos sos el actual
+    actual = siguiente; // entonces el actual es el siguiente
+  } 
+  head = anterior; // head es el anterior 
+  return head; // 
 }
