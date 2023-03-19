@@ -43,22 +43,51 @@ void listPrint(struct list* l) {
 }
 
 struct list* addFirst(struct list* l, char* data) {
-
-    // COMPLETAR
-    
+    // agregar el struct como primero de una lista utilizando doble puntero
+    struct node* n = (struct node*)malloc(sizeof(struct node));
+    n->data = data;
+    n->next = l->first;
+    n->prev = 0;
+    if (l->first != 0) {
+        l->first->prev = n;
+    }
+    l->first = n;
+    l->size++;
     return 0;
 }
 
 struct list* removeFirst(struct list* l) {
 
-    // COMPLETAR
+    // eliniar el primer strcut de una lista usando doble puntero
+    struct node* n = l->first;
+    if (n != 0) {
+        l->first = n->next;
+        if (l->first != 0) {
+            l->first->prev = 0;
+        }
+        free(n);
+        l->size--;
+    }
+
     
     return 0;
 }
 
 struct list* removeNode(struct list* l, struct node* n) {
     
-    // COMPLETAR
+    // eliminar un nodo con doble puntero
+    if (n != 0) {
+        if (n->prev != 0) {
+            n->prev->next = n->next;
+        } else {
+            l->first = n->next;
+        }
+        if (n->next != 0) {
+            n->next->prev = n->prev;
+        }
+        free(n);
+        l->size--;
+    }
     
     return 0;
 }
