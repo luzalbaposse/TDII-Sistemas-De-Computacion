@@ -92,9 +92,28 @@ struct list* removeNode(struct list* l, struct node* n) {
     return 0;
 }
 
-struct list* removeNodei(struct list* l, int i) {
+struct list* removeNode(struct list* l, int i) {
 
-    // COMPLETAR
+    // eliminar el nodo con el int
+    struct node* n = l->first;
+    while (i > 0 && n != 0) {
+        n = n->next;
+        i--;
+    }
+    if (n != 0) {
+        if (n->prev != 0) {
+            n->prev->next = n->next;
+        } else {
+            l->first = n->next;
+        }
+        if (n->next != 0) {
+            n->next->prev = n->prev;
+        }
+        free(n);
+        l->size--;
+    }
+    
+
     
     return 0;
 }
