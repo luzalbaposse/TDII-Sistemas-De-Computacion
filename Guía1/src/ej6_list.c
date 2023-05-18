@@ -10,9 +10,7 @@ int data;
 struct node *next;
 };
 
-d. Implementar la función struct node* removeData(struct node* n, int data), que toma
-un puntero a una lista y un dato, y borra todas las apariciones de data en la lista. La función
-debe retornar el puntero a la lista resultado.
+
 
 */
 
@@ -85,8 +83,31 @@ struct node* join(struct node* n1, struct node* n2) {
 }
 
 struct node* removeData(struct node* n, int data) {
+    /*
+    d. Implementar la función struct node* removeData(struct node* n, int data), que toma
+un puntero a una lista y un dato, y borra todas las apariciones de data en la lista. La función
+debe retornar el puntero a la lista resultado.
+    */
+    if(n == 0){
+         return 0;
+    }
+    struct node *aux = n;
+    struct node *aux2 = n;
+    while(aux->next != 0){
+        if(aux->data == data){
+            aux2->next = aux->next;
+            free(aux);
+            aux = aux2->next;
+        } else {
+            aux2 = aux;
+            aux = aux->next;
+        }
+    }
+    if(aux->data == data){
+        aux2->next = 0;
+        free(aux);
+    }
     
-    // COMPLETAR
     
     return 0;
 }

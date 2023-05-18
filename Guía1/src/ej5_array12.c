@@ -24,10 +24,6 @@ int sumAsBytes(char* v) {
         sum += v[i];
     }
     return sum;
-
-
-    
-    return 0;
 }
 
 int sumAsInts(int* v) {

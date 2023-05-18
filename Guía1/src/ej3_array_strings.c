@@ -39,14 +39,33 @@ Ejemplo: superConcatenate(["Eh_","oo oo","+Gol"], 3) → "Eh_oo oo+Gol"
 */
 
 char* superConcatenate(char* v[], int size) {
-    
-        char concatenacion = ""; // Variable que va a contener la concatenación
-        for (int i = 0; i < size; i++) { // Recorro el arreglo de strings
-            concatenacion = concatenate(concatenacion, v[i]); // Concateno el string actual con la concatenación
+char* result = NULL;
+    int length = 0;
+    int i, j;
+
+    // Calcular la longitud total de los strings del arreglo
+    for (i = 0; i < size; i++) {
+        for (j = 0; v[i][j] != '\0'; j++) {
+            length++;
         }
-        
-    
-        return 0;
+    }
+
+    // Reservar memoria para almacenar la concatenación de todos los strings
+    result = (char*) malloc(sizeof(char) * (length + 1));
+
+    // Concatenar todos los strings del arreglo
+    int pos = 0;
+    for (i = 0; i < size; i++) {
+        for (j = 0; v[i][j] != '\0'; j++) {
+            result[pos] = v[i][j];
+            pos++;
+        }
+    }
+
+    // Agregar el carácter nulo al final de la cadena
+    result[pos] = '\0';
+
+    return result;
 }
 
 /*
@@ -57,17 +76,41 @@ Ejemplo: superConcatenateWithSep(["Hola","Pepe","Tito"], 3, "..") → "Hola..Pep
 */
 
 char* superConcatenateWithSep(char* v[], int size, char* s) {
+    char* result = NULL;
+    int length = 0;
+    int sep_len = strlen(s);
+    int i, j;
 
-    char concatenacion = ""; // Variable que va a contener la concatenación
-    for (int i = 0; i < size; i++) { // Recorro el arreglo de strings
-        concatenacion = concatenate(concatenacion, v[i]); // Concateno el string actual con la concatenación
-        if (i != size - 1) { // Si no es el último string, concateno el separador
-            concatenacion = concatenate(concatenacion, s);
+    // Calcular la longitud total de los strings del arreglo y los separadores
+    for (i = 0; i < size; i++) {
+        length += strlen(v[i]);
+        if (i < size - 1) {
+            length += sep_len;
         }
     }
-    
 
-    return 0;
+    // Reservar memoria para almacenar la concatenación de todos los strings y separadores
+    result = (char*) malloc(sizeof(char) * (length + 1));
+
+    // Concatenar todos los strings del arreglo y los separadores
+    int pos = 0;
+    for (i = 0; i < size; i++) {
+        for (j = 0; v[i][j] != '\0'; j++) {
+            result[pos] = v[i][j];
+            pos++;
+        }
+        if (i < size - 1) {
+            for (j = 0; j < sep_len; j++) {
+                result[pos] = s[j];
+                pos++;
+            }
+        }
+    }
+
+    // Agregar el carácter nulo al final de la cadena
+    result[pos] = '\0';
+
+    return result;
 }
 
 int main() {
@@ -75,7 +118,7 @@ int main() {
     // -- Descomentar para probar --
     // Lo siguiente es un ejemplo y DEBE ser modificado.
 
-    char* v[5] = {"supercalifragilisticoespialidoso", "como", "va", "el", "dia","supercalifragilisticoespialidososupercalifragilisticoespialidoso"};
+    char* v[5] = {"supercalifragilisticoespialidoso", "como", "va", "el", "dia"};
 
     char* l = longest(v, 6);
 

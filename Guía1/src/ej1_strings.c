@@ -41,20 +41,30 @@ void replaceChar(char* s, char old, char new) {
 } //La funcion replaceChar recibe un string s, un caracter old y un caracter new. La función debe reemplazar todas las apariciones del caracter old por el caracter new en el string s.
 
 char* concatenate(char* s1, char* s2) {
-    int long1 = strlen(s1);
-    int long2 = strlen(s2);
-    char* new_s = (char*) malloc((long1 + long2 + 1) * sizeof(char));
-    for (int i = 0; i < long1; i++) {
-        new_s[i] = s1[i];
+    /*La funcion concatenate recibe dos strings s1 y s2 y 
+    devuelve un nuevo string que es la concatenación de s1 
+    y s2. La función debe utilizar malloc para reservar memoria 
+    para el nuevo string.
+    */
+   int string1 = 0;
+   int string2 = 0;
+    while (s1[string1] != '\0') {
+         string1++;
     }
-    for (int i = 0; i < long2; i++) {
-        new_s[long1 + i] = s2[i];
+    while (s2[string2] != '\0') {
+         string2++;
     }
-    new_s[long1 + long2] = '\0';
-    free(s1);
-    free(s2);
-    return new_s;
-} //La funcion concatenate recibe dos strings s1 y s2 y devuelve un nuevo string que es la concatenación de s1 y s2. La función debe utilizar malloc para reservar memoria para el nuevo string.
+    char* nuevostring = (char*) malloc((string1 + string2 + 1) * sizeof(char));
+    for (int i = 0; i < string1; i++) {
+        nuevostring[i] = s1[i];
+    }
+    for (int i = 0; i < string2; i++) {
+        nuevostring[string1 + i] = s2[i];
+    }
+    nuevostring[string1 + string2] = '\0';
+    return nuevostring;
+} 
+
 
 int main() {
     
