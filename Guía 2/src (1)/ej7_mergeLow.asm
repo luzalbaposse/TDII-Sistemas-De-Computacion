@@ -1,3 +1,5 @@
+; PENDIENTE!!!!
+
 
 global _start
 section .text
