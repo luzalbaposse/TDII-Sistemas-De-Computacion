@@ -35,7 +35,7 @@ multiplicar: ; Ejercicio: Funcion que toma dos numeros enteros sin signo de 16 b
 multiplicar_ciclo: ; Acá voy a multiplicar el primer número por el segundo, sumando el primer número tantas veces como indique el segundo. Otra versión
     add eax, di      ; Sumar el primer número al resultado acumulado
     dec cx           ; Decrementar el segundo número
-    jnz multiply_loop ; Saltar al bucle si el segundo número no es cero
+    jnz multiplicar_ciclo ; Saltar al bucle si el segundo número no es cero
 
     ret
 printHex:

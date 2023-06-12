@@ -17,9 +17,9 @@ def sumarObjetivo(arreglo, objetivo):
     return False
 
 def main():
-    arreglo = []
-    for i in range(10):
-        arreglo.append(random.randint(-10, 10))
+    arreglo = [1, -2, 3, 0, -9, 2, 4, 2, 1, 9]
+   # for i in range(10):
+   #     arreglo.append(random.randint(-10, 10))
     print(arreglo)
     objetivo = int(input("Ingrese el objetivo: "))
     print(sumarObjetivo(arreglo, objetivo))
