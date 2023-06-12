@@ -85,4 +85,65 @@ Hay varios tipos de dispositivos que dependen de una clasificación. Vamos a ver
 
 <table data-view="cards"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><mark style="background-color:purple;"><strong>Modo de transferencia de datos</strong></mark></td><td>Flujo de caracteres: transfiere de a bytes</td><td>Flujo de bloques: transfiere a bloques de bytes</td></tr><tr><td><mark style="background-color:purple;"><strong>Método de acceso</strong></mark></td><td>Acceso secuencial: acceso es determinado por el dispositivo</td><td>Acceso aleatorio: acceso es determinado por el usuario del dispositivo</td></tr><tr><td><mark style="background-color:purple;"><strong>Forma de transferencia</strong></mark></td><td>Síncrona: el tiempo de respuesta es predecible</td><td>Asíncrona: el tiempo de respuesta es aleatorio</td></tr><tr><td><mark style="background-color:purple;"><strong>Compartición</strong></mark></td><td>Compartible: varios procesos lo pueden usar concurrentemente</td><td>Dedicado: solo un proceso a la vez</td></tr><tr><td><mark style="background-color:purple;"><strong>Velocidad</strong></mark></td><td>Latencia, tiempo de búsqueda, tasa de transferencia, etc.</td><td></td></tr><tr><td><mark style="background-color:purple;"><strong>Tipo de operación</strong></mark></td><td>Solo lectura<br>Solo escritura<br>Lectura-escritura</td><td></td></tr></tbody></table>
 
-<img alt="" class="gitbook-drawing">
+### Subsistema de E/S
+
+Cada proceso debe poder comunicarse con los dispositivos que necesita a través del sistema. Para esto, se provee una interfaz que permite abstraer el acceso a los dispositivos en comandos simples, mientras **oculta el funcionamiento interno** de cada dipositivo.
+
+Hay 5 capas, vamos a ver cada una:
+
+* **Capa 0**: Hardware
+*   **Capa 1:** Manejador de interrupciones y rutinas
+
+    Por medio de un conjunto de rutinas básicas, el OS puede atender interrupciones y dar el control a las capas superiores. Además utiliza rutinas especiales, que permiten acceder al **espacio de memoria de los dispositivos**. \
+    El sistema cuenta con todo tipo de rutinas para atender dispositivos, desde **rutinas genéricas** para dispositivos, donde solo se provee una interfaz para acceder a memoria, hasta complejas rutinas para tender dispositivos específicos.\
+    <mark style="background-color:green;">El desarrollo de esta capa es fundamental para construir drivers de dispositivo eficientes.</mark>
+* **Capa 2:** Controladores de dispositivos.\
+  El funcionamiento de cada dispositivo depende del fabricante. Este implementa un **protocolo de comunicación particular.** Para esto, los fabricantes proveen drivers específicos para cada dispositivo y sistema donde serán utilizados.\
+  <mark style="background-color:green;">La interfaz de la capa anterior es utilizada por los drivers para acceder directamente al hardware.</mark> \
+  Por esta razón, muchas veces los sistemas no implementan las interfaces que necesitan los drivers, y por lo tanto son incompatibles con el sistema. Otras veces, los fabricantes directamente no dan soporte para algunos sistemas operativos.\
+  Los drivers deben ser rutinas **reentrantes**, es decir que deben poder recibir una nueva solicitud mientras están ejecutando otra.
+* **Capa 3:** Subsistema de E/S independiente del dispositivo. \
+  Publica una interfaz uniforme para acceder a los dispositivos. Los _drivers_ se deben adaptar y exponer la interfaz que el sistema propone. De esta forma todos los dispositivos de comportamiento similar, son utilizados por los usuarios de la misma forma. \
+  Además se ocupa de la **Planificación de E/S**. Determiando el orden en que se atenderán las solicitudes y respetando las prioridades entre los diferentes dispositivos. \
+  Esta capa también se ocupa de resolver las operaciones comunes a todos los dispositivos.\
+  Algunas operaciones comunes son:
+  * **Administración de búferes:** los datos a transferir se almacenan temporalmente en memoria, permitiendo adaptar los tamaños de transferencia entre dispositivos y sistema.
+  * **Administración de errores:** los errores son capturados por el sistema como resultado de una operación de E/S. Existen errores que pueden dejar al sistyema en un estado inconsistente que debe ser administrado correctamente para evitar la perdida de datos.
+  * **Asignación y liberación de dispositivos dedicados:** el sistema debe aceptar y rechazar soliciudes de uso de uso de dispositivos teniendo en cuenta las carecterísticas de uso de cada uno. Evitando en todo momento generar _deadlocks_ por condiciones de sincronización.
+* **Capa 4:** Software de E/S en la capa de usuario.\
+  Esta capa está formada por el conjunto de **bibliotecas de funciones que resuelven el acceso a E/S:**\
+  Proporcionan comandos o funciones que nos permiten utilizar los recursos que proveen los dispositivos de forma más simple. \
+  Por ejemplo, printf llama internamente a syscalls como write cuando se debe imprimir un texto largo o put cuando es un solo caracter.
+
+### Relojes
+
+Los relojes son un tipo específico de dispositivos de e/s. Su interfaz de hardware se ocupa de **generar eventos en intervalos regulares de tiempo**. Estos eventos se suelen traducir en interrupciones o dejan registro en contadores.&#x20;
+
+Los sistemas cuentan con múltiples relojes que operan a distintas frecuencias.
+
+El sistema distingue entre distintas fuentes de tiempo:
+
+* Temporizador de tiempo real (_real-time-clock, RTCI)_
+* Temporizador de eventos de alta precisión (_high precision event timer, HPET_)
+
+La interfaz del reloj provee tres funciones básicas:
+
+* Obtener el tiempo actual
+* Obtener el tiempo transcurrido desde el último evento
+* Configurar el reloj para despertar la operación X en el momento T
+
+Internamente el sistema requiere múltiples relojes, para resolver esto, se crean relojes virtuales. Los relojes virtuales se actualizan o cambian su estado en función de los relojes físicos.
+
+### Administración de energía
+
+El sistema operativo juega un rol fundamental en la administración de la energía.
+
+Ya sea que se cuente con una bateria como fuente de alimentación o se esté conectado a la red eléctrica. La reducción del consumo de energía es un eje básico de diseño.
+
+Los sistemas están diseñados para disipar una determinada cantidad de energía que se manifiesta en **calor.** Este calor debe ser reducido mediante sistemas de enfriamiento como _coolers_.
+
+**Advanced Configuration and Power Interface(ACPI):** Provee un estandar para que el sistemas operativo pueda descubrir y configurar los componentes de ´ hardware del sistema y administrar el consumo de energ´ıa. Permite monitorar el uso del los componentes, su estado, y mecanismos de Plug and Play y hot swapping. El sistema operativo se encarga de decidir cuando encender o apagar componentes, o incluso degradar su funcionamiento para reducir el consumo. Esta tarea es muy compleja ya que para reducir el consumo se debe afectar la experiencia de usuario.
+
+{% hint style="info" %}
+Lo más importante es **clasificación** de **dispositivos**, las **diferentes** **capas** y **conceptos** **generales**.&#x20;
+{% endhint %}
