@@ -142,7 +142,11 @@ Ya sea que se cuente con una bateria como fuente de alimentación o se esté con
 
 Los sistemas están diseñados para disipar una determinada cantidad de energía que se manifiesta en **calor.** Este calor debe ser reducido mediante sistemas de enfriamiento como _coolers_.
 
-**Advanced Configuration and Power Interface(ACPI):** Provee un estandar para que el sistemas operativo pueda descubrir y configurar los componentes de ´ hardware del sistema y administrar el consumo de energ´ıa. Permite monitorar el uso del los componentes, su estado, y mecanismos de Plug and Play y hot swapping. El sistema operativo se encarga de decidir cuando encender o apagar componentes, o incluso degradar su funcionamiento para reducir el consumo. Esta tarea es muy compleja ya que para reducir el consumo se debe afectar la experiencia de usuario.
+**Advanced Configuration and Power Interface(ACPI):** Provee un estandar para que el sistemas operativo pueda descubrir y configurar los componentes de hardware del sistema y administrar el consumo de energía.&#x20;
+
+Permite monitorar el uso del los componentes, su estado, y mecanismos de **Plug and Play** y **hot swapping**. El sistema operativo se encarga de decidir cuando encender o apagar componentes, o incluso degradar su funcionamiento para reducir el consumo.&#x20;
+
+Esta tarea es muy compleja ya que para reducir el consumo se debe afectar la experiencia de usuario.
 
 {% hint style="info" %}
 Lo más importante es **clasificación** de **dispositivos**, las **diferentes** **capas** y **conceptos** **generales**.&#x20;

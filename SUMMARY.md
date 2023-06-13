@@ -4,4 +4,5 @@
 
 ## 💾 Organización del computador
 
+* [Hardware de Entrada/Salida](organizacion-del-computador/hardware-de-entrada-salida.md)
 * [Sistema de Entrada/Salida](organizacion-del-computador/sistema-de-entrada-salida.md)
