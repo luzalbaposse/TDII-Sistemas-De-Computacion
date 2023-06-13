@@ -2,6 +2,10 @@
 
 * [TDII-Sistemas-De-Computacion](README.md)
 
+## 💻 Sistemas Operativos
+
+* [ℹ Representación de la información](sistemas-operativos/representacion-de-la-informacion.md)
+
 ## 💾 Organización del computador
 
 * [Hardware de Entrada/Salida](organizacion-del-computador/hardware-de-entrada-salida.md)
