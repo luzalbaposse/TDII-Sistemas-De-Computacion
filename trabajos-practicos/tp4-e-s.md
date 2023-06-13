@@ -397,7 +397,7 @@ Este código enciende los leds conectados a los pines 4, 5 y 6 de la placa Ardui
 `int SW_state = digitalRead(SW);` \
 `int mapX = map(xPosition, 0, 1023, -512, 512);` -> Convierte la posición \
 `int mapY = map(yPosition, 0, 1023, -512, 512);` \
-`Serial.println(mapX);` \
+`Serial.println(mapX);` -> Lo imprime en monitor serie \
 `Serial.println(mapY);` \
 `Serial.println(SW_state);` \
 `digitalWrite(ledPin0, SW_state);` \
@@ -409,20 +409,20 @@ Básicamente, se leen e interpretan las entradas del joystick y el estado de un 
 #### Explicar que realiza el programa.
 
 `#include <Servo.h>` \
-`const int servoPin = 10;` \
+`const int servoPin = 10;` -> En qué pin está el servomotor\
 `Servo servo1;` \
 `void setup() {` \
 `servo1.attach(servoPin);` \
 `} void loop() {` \
-`servo1.write(0);` \
+`servo1.write(0);` -> Ángulo 0\
 `delay(1000);` \
-`servo1.write(30);` \
+`servo1.write(30);` -> Ángulo 30 \
 `delay(1000);` \
-`servo1.write(60);` \
+`servo1.write(60);` -> Ángulo 60 \
 `delay(1000);` \
-`servo1.write(90);` \
+`servo1.write(90);` -> Ángulo 90\
 `delay(1000);` \
-`servo1.write(180);` \
+`servo1.write(180);` -> Ángulo 180 \
 `delay(1000);` \
 `}`&#x20;
 
@@ -432,7 +432,7 @@ El código mueve el servomotor conectado al pin 10 en diferentes ángulos (0, 30
 
 `#include <Servo.h>` \
 `Servo servo1;` \
-`const int servoPin = 10;` \
+`const int servoPin = 10;` -> Defino el pin\
 `const byte interruptPin = 2;` \
 `volatile byte button = 0;` \
 `const int ledPin0 = 4;` \
@@ -441,20 +441,21 @@ El código mueve el servomotor conectado al pin 10 en diferentes ángulos (0, 30
 `const int VRx = A1;` \
 `const int SW = 2;` \
 `void setup() {` \
-`servo1.attach(servoPin);` \
-`pinMode(ledPin0, OUTPUT);` \
+`servo1.attach(servoPin);` -> Le digo que el servo está acá\
+`pinMode(ledPin0, OUTPUT);` -> Esto envia señales\
 `pinMode(ledPin1, OUTPUT);` \
-`pinMode(interruptPin, INPUT_PULLUP); attachInterrupt(digitalPinToInterrupt(interruptPin), click, RISING); pinMode(VRx, INPUT);` \
+`pinMode(interruptPin, INPUT_PULLUP);` -> Recibe señales\
+`attachInterrupt(digitalPinToInterrupt(interruptPin), click, RISING); pinMode(VRx, INPUT);` \
 `pinMode(VRy, INPUT);` \
 `pinMode(SW, INPUT_PULLUP);` \
 `}` \
 `void loop() {` \
-`int xPosition = analogRead(VRx);` \
+`int xPosition = analogRead(VRx);` -> Se guarda en variables lo que se lee\
 `int yPosition = analogRead(VRy);` \
 `int SW_state = digitalRead(SW);` \
-`int angulo1 = map(xPosition, 0, 1023, 0, 180);` \
+`int angulo1 = map(xPosition, 0, 1023, 0, 180);` -> Mapea para convertir a ángulo \
 `servo1.write(angulo1);` \
-`int brillo = map(yPosition, 0, 1023, -255, 255);` \
+`int brillo = map(yPosition, 0, 1023, -255, 255);` -> Mapea para convertir a brillo\
 `analogWrite(ledPin1, abs(brillo));` \
 `if( button ) {` \
 `digitalWrite(ledPin0, 1);` \
@@ -463,11 +464,12 @@ El código mueve el servomotor conectado al pin 10 en diferentes ángulos (0, 30
 `}` \
 `}` \
 `void click() {` \
-`if( button == 0 ) { button = 1; } else { button = 0; } }`
+`if( button == 0 ) { button = 1; } else { button = 0; }` \
+`}`
 
-Utiliza las lecturas del joystick para controlar la posición de un servomotor y el brillo de un LED. Además, utiliza un botón para cambiar el estado de una variable que controla el encendido/apagado de otro LED. La posición del joystick se mapea a un ángulo y se utiliza para mover el servomotor, mientras que el valor del eje Y del joystick se mapea a un brillo y se aplica a un LED.&#x20;
+Utiliza las lecturas del joystick para controlar la posición de un servomotor y el brillo de un LED. Además, utiliza un botón para cambiar el estado de una variable que controla el **encendido/apagado** de otro LED. La posición del joystick se mapea a un ángulo y se utiliza para mover el servomotor, mientras que el valor del eje Y del joystick se mapea a un brillo y se aplica a un LED.&#x20;
 
+## Repositorio
 
-
-
+{% embed url="https://github.com/luzalbaposse/Entrada-Salida-Arduino" %}
 
