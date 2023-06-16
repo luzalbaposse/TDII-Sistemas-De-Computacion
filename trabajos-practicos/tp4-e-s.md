@@ -387,8 +387,7 @@ Este código enciende los leds conectados a los pines 4, 5 y 6 de la placa Ardui
 
 ### Opción A - Leds
 
-````arduino
-```cpp
+```arduino
 /* Modificar el programa para que presente la siguiente secuencia de encendido de leds: 000, 
 001, 011, 111, 110, 100. La misma se debe repetir todo el tiempo en intervalos regulares de 1 
 segundo entre cada valor. 
@@ -435,7 +434,6 @@ digitalWrite(ledPin2, 0);
 delay(1000); 
 }
 ```
-````
 
 ## Opción B - Leds
 
