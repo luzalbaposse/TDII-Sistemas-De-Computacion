@@ -7,6 +7,16 @@ description: >-
 
 # 📟 TP4: E/S
 
+## Integrantes
+
+[Josefina Jahde](https://campusvirtual.utdt.edu/user/view.php?id=26713\&course=4302)
+
+[Luz Alba Posse](https://github.com/luzalbaposse)
+
+[Dafydd Jenkins](https://github.com/Dafydd8)
+
+[Valentino Cannestraci](https://campusvirtual.utdt.edu/user/view.php?id=26746\&course=4302)
+
 ## Enunciado
 
 ### Introducción
