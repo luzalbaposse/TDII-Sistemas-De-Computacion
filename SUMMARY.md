@@ -10,6 +10,7 @@
 
 * [Hardware de Entrada/Salida](organizacion-del-computador/hardware-de-entrada-salida.md)
 * [Sistema de Entrada/Salida](organizacion-del-computador/sistema-de-entrada-salida.md)
+* [Sistemas de Cómputo y su evolución](organizacion-del-computador/sistemas-de-computo-y-su-evolucion.md)
 
 ## 🎇 Trabajos Prácticos
 
