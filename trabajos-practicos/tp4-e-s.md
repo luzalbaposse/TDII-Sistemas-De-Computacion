@@ -708,7 +708,10 @@ digitalWrite(ledPin0, 0);
 } 
 } 
 void click() { 
-if( button == 0 ) { button = 1; } else { button = 0; } 
+if( button == 0 ) { 
+button = 1; 
+} else { 
+button = 0; } 
 }
 ```
 
@@ -716,11 +719,10 @@ Utiliza las lecturas del joystick para controlar la posición de un servomotor y
 
 ## Opción A - Interrupciones
 
-```arduino
-/*
+<pre class="language-arduino"><code class="lang-arduino">/*
 Modificar el programa para que cada vez que se presiona el botón del Joystick se prendan todos los leds y estos queden prendidos. Cuando se presione nuevamente, estos se deben apagar. 
 */
-#include <Servo.h>
+#include &#x3C;Servo.h>
 Servo servo1;
 const int servoPin = 10;
 const byte interruptPin = 2;
@@ -731,8 +733,8 @@ const int ledPin2 = 6;
 const int VRy = A0;
 const int VRx = A1;
 const int SW = 2;
-int time_stamp = 0; // Usamos time_stamp para solucionar el problema con las interrupciones
-
+<strong>int time_stamp = 0; // Usamos time_stamp para solucionar el problema con las interrupciones
+</strong>
 void setup() {
   servo1.attach(servoPin);
   pinMode(ledPin0, OUTPUT);
@@ -759,12 +761,12 @@ void loop() {
     digitalWrite(ledPin0, HIGH);
     digitalWrite(ledPin1, HIGH);
     digitalWrite(ledPin2, HIGH);
-    time_stamp = 250;
+    
   } else{
     digitalWrite(ledPin0, LOW);
     //digitalWrite(ledPin1, LOW); Como se juega con el brillo de este pin, lo dejamos relacionado al estado que tenga
     digitalWrite(ledPin2, LOW);
-    time_stamp = 250;
+    
   }
   if (time_stamp > 0){
     time_stamp = time_stamp - 1;
@@ -776,12 +778,13 @@ void click() {
   if(time_stamp == 0){
 if (button == 0) {
     button = 1;
+    time_stamp = 250;
   } else {
-    button = 0;
+    time_stamp = 250;
   } 
   }
 }
-```
+</code></pre>
 
 ## Resumen
 
@@ -796,7 +799,6 @@ El movimiento del Joystick en sentido horizontal deber´a mover el Servo en todo
 
 Si se presiona el botón del Joystick se intercambiar´a el comportamiento de los ejes vertical y
 horizontal.
-
 */
 #include <Servo.h>
 
@@ -855,15 +857,17 @@ void loop() {
     time_stamp = time_stamp - 1;
   }
 
-  delay(2);
+  delay(10);
 }
 
 void click() {
   if (time_stamp == 0) {
     if (button == 0) {
       button = 1;
+      time_stamp = 40;
     } else {
       button = 0;
+      time_stamp = 40;
     }
   }
 }
