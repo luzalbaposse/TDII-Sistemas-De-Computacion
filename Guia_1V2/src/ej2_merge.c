@@ -2,16 +2,42 @@
 #include <stdlib.h>
 
 int* merge(int* A, int sizeA, int* B, int sizeB) {
-
-    // COMPLETAR
-    
-    return 0;
+    /*
+    Recibe: dos arreglos de enteros ordenados de menor a mayor.
+    Devuelve: un nuevo arreglo que combine ambos arreglos de forma ordenada.
+    */
+    int* C = malloc(sizeof(int) * (sizeA + sizeB));
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    while (i < sizeA && j < sizeB){
+        if (A[i] < B[j]){ // si el de a es msas chico que el de b
+            C[k] = A[i]; // pongo el de a
+            i++;
+            k++;
+        } 
+        else{
+            C[k] = B[j]; // sino pongo el de b
+            j++;
+            k++;
+        }
+    }
+   // si no tengo más elementos de A, pongo los de B
+    while (j < sizeB){
+        C[k] = B[j];
+        j++;
+        k++;
+    }
+    // si no tengo más elementos de B, pongo los de A
+    while (i < sizeA){
+        C[k] = A[i];
+        i++;
+        k++;
+    }
+    return C;
 }
 
 int main() {
-    /*
-    // -- Descomentar para probar --
-    // Lo siguiente es un ejemplo y DEBE ser modificado.
 
     int a[5] = {4,5,6,7,8};
     int b[4] = {1,2,3,9};
@@ -26,7 +52,6 @@ int main() {
 
     free(result);
 
-    // */
 
     return 0;
 }
