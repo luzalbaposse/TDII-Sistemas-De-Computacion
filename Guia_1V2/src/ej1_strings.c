@@ -14,7 +14,7 @@ int len(char* s) {
 
 char* copy(char* s) {
     int i = 0;
-    char* aux = malloc(sizeof(char)*len(s));
+    char* aux = malloc(sizeof(char) * len(s));
     while (s[i] != '\n'){        
         aux[i] = s[i];
         i++;
@@ -33,12 +33,6 @@ void replaceChar(char* s, char old, char new) {
     }
 
 char* concatenate(char* s1, char* s2) {
-
-    /*
-    Toma dos strings y genera un nuevo string que
-contiene la concatenaci´on de ambos (primero s1 y luego s2). La memoria de los strings pasados
-por par´ametro debe ser liberada.
-    */
    int i = 0;
    int b = 0;
    char *nuevo = malloc(sizeof(char)* (len(s1) + len (s2)));
@@ -47,9 +41,9 @@ por par´ametro debe ser liberada.
     i++;
     b++;
    }
-   i = 0;
+i = 0;
    while(s2[i] != '\0'){
-    nuevo[b] = s1[i];
+    nuevo[b] = s2[i];
     i++;
     b++;
    }
