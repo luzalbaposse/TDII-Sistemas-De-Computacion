@@ -14,11 +14,13 @@ int len(char* s) {
 
 char* copy(char* s) {
     int i = 0;
-    char* aux = malloc(sizeof(char) * len(s));
+    char* aux = (char*)malloc(sizeof(char) * (len(s)+1)); // faltaba sumar el caracter nulo
     while (s[i] != '\n'){        
         aux[i] = s[i];
         i++;
     }
+    // le agrego el caracter nulo
+    aux[i+1] = '\0';
     return aux;
 }
 
@@ -35,7 +37,7 @@ void replaceChar(char* s, char old, char new) {
 char* concatenate(char* s1, char* s2) {
    int i = 0;
    int b = 0;
-   char *nuevo = malloc(sizeof(char)* (len(s1) + len (s2)));
+   char *nuevo = (char*)malloc(sizeof(char)* (len(s1) + len (s2) + 1));
    while(s1[i] != '\0'){
     nuevo[b] = s1[i];
     i++;
@@ -50,9 +52,6 @@ i = 0;
    free(s1);
    free(s2);
    return nuevo;
-
-    
-    return 0;
 }
 
 int main() {

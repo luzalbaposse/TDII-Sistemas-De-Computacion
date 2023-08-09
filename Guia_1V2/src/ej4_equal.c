@@ -3,12 +3,28 @@
 
 void pairOfEquals(char v[], int size, char** a, char** b) {
 
-    // COMPLETAR
-
+    /*
+    Implementar la función void pairOfEquals(char v[], int size, char** a, char** b) que busca dentro de v dos bytes iguales y escribe en a y b los punteros a los bytes encontrados. En el caso
+de no encontrar ningún par de bytes iguales debe retornar cero en ambos punteros. Recordar que el tipo char es de 1 byte de tama˜no y se opera como un n´umero con signo. Ejemplo: pairOfEquals([14,23,55,21,55,53], &a, &b) → a = &v[2] y b = &v[4] Ejemplo: pairOfEquals([14,23,22,21,55,53], &a, &b) → a = 0 y b = 0
+    Requiere: size > 0
+    Devuelve: a y b apuntan a dos bytes iguales dentro de v o a 0 si no hay iguales.
+    */
+   for (int i = 0; i < size; i++) {
+       for (int j = i+1; j < size; j++) {
+           if (v[i] == v[j]) {
+               *a = &v[i];
+               *b = &v[j];
+               return;
+           }
+       }
+  
+   }
+    *a = 0; // Si no hay iguales se devuelve 0
+    *b = 0; // Si no hay iguales se devuelve 0 
 }
 
 int main() {
-    /*
+    
     // -- Descomentar para probar --
     // Lo siguiente es un ejemplo y DEBE ser modificado.
 
