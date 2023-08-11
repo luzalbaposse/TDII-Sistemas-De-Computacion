@@ -20,7 +20,7 @@ char* copy(char* s) {
         i++;
     }
     // le agrego el caracter nulo
-    aux[i+1] = '\0';
+    aux[i] = '\0';
     return aux;
 }
 

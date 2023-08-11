@@ -10,10 +10,10 @@ de no encontrar ningún par de bytes iguales debe retornar cero en ambos puntero
     Devuelve: a y b apuntan a dos bytes iguales dentro de v o a 0 si no hay iguales.
     */
    for (int i = 0; i < size; i++) {
-       for (int j = i+1; j < size; j++) {
-           if (v[i] == v[j]) {
+       for (int otro = i+1; otro < size; otro++) { // Se busca desde el siguiente al actual hasta el final del vector 
+           if (v[i] == v[otro]) { // Si se encuentra un igual se devuelve
                *a = &v[i];
-               *b = &v[j];
+               *b = &v[otro];
                return;
            }
        }
