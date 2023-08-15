@@ -70,4 +70,4 @@ int main() {
     printf("%f\n", promedio(arreglo5, 5));
     printf("%f\n", promedio(arreglo6, 6));
     return 0;
-}
+}q

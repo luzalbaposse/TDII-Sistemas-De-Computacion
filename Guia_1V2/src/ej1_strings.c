@@ -15,7 +15,7 @@ int len(char* s) {
 char* copy(char* s) {
     int i = 0;
     char* aux = (char*)malloc(sizeof(char) * (len(s)+1)); // faltaba sumar el caracter nulo
-    while (s[i] != '\n'){        
+    while (s[i] != '\0'){        
         aux[i] = s[i];
         i++;
     }
