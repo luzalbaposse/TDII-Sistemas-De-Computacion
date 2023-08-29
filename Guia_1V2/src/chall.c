@@ -60,6 +60,53 @@ void separarParesImpares(int* array1, int size1, int* array2, int size2, int** p
     }
 
 }
+
+// Separarpareseimpares sin usar realloc
+
+void separarParesEImpares2(int* array1, int size1, int* array2, int size2, int** pares, int* sizePares, int** impares, int* sizeImpares){
+    /*
+    Requiere: array1, array2, pares, impares != NULL
+    Devuelve: el listado de pares e impares según corresponda. 
+
+    */
+    int* paresAux = (int*)malloc(sizeof(int)*size1);
+    int* imparesAux = (int*)malloc(sizeof(int)*size1);
+    int sizeParesAux = 0;
+    int sizeImparesAux = 0;
+    for(int i = 0; i < size1; i++){
+        if(array1[i]%2 == 0){
+            paresAux[sizeParesAux] = array1[i];
+            sizeParesAux++;
+        }else{
+            imparesAux[sizeImparesAux] = array1[i];
+            sizeImparesAux++;
+        }
+    }
+    for(int i = 0; i < size2; i++){
+        if(array2[i]%2 == 0){
+            paresAux[sizeParesAux] = array2[i];
+            sizeParesAux++;
+        }else{
+            imparesAux[sizeImparesAux] = array2[i];
+            sizeImparesAux++;
+        }
+    }
+    if(sizeParesAux == 0){
+        *pares = NULL; // no se puede hacer free de NULL
+        *sizePares = 0;
+    }else{
+        *pares = paresAux;
+        *sizePares = sizeParesAux;
+    }
+    if(sizeImparesAux == 0){
+        *impares = NULL;
+        *sizeImpares = 0;
+    }else{
+        *impares = imparesAux;
+        *sizeImpares = sizeImparesAux;
+    }
+
+}
 /*
 char* lista2string(struct list* l)
 Toma una lista de nodos que contienen punteros a string. Recorre la lista y concatena todas las string en una sola que retorna. La lista original debe ser liberada.
@@ -117,5 +164,22 @@ for(int i = 0; i < sizeImpares; i++){
     printf("%d ", impares[i]);
 }
 printf("\n");
+
+// Pruebo separarpareseimpares2
+int* pares2;
+int* impares2;
+int sizePares2;
+int sizeImpares2;
+separarParesEImpares2(array1, 5, array2, 5, &pares2, &sizePares2, &impares2, &sizeImpares2);
+printf("Pares: ");
+for(int i = 0; i < sizePares2; i++){
+    printf("%d ", pares2[i]);
+}
+printf("\nImpares: ");
+for(int i = 0; i < sizeImpares2; i++){
+    printf("%d ", impares2[i]);
+}
+printf("\n");
+
 return 0;
 }
